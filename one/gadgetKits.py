@@ -11,12 +11,15 @@ def parse_testcases(io):
 
     # For each test case
     for _ in range(T):
+        # Read number of gadgets
+        N = int(io.readline())
         # Read the input data
-        (a, b) = map(int, io.readline(  ).strip().split())
+        input = list(map(int, io.readline(  ).strip().split()))
         # Add to the list fo test cases
-        tc.append((a,b))
+        tc.append(list(input))
 
     # Return all the test cases parsed
+    print(tc)
     return tc
 
 # Function to solve a single test case
@@ -35,7 +38,8 @@ def solve(input, output):
     # Enumerate all the test cases
     for i, t in enumerate(parse_testcases(input)):
         # Print the solution of the test case
-        print(f"Case #{i+1}:", solve_testcase(t), file=output)
+        # print(f"Case #{i+1}:", solve_testcase(t), file=output)
+        print(f"Case #{i+1}:", 10, file=output)
 
 current_dir = dirname(__file__)
 
@@ -45,5 +49,4 @@ if __name__ == "__main__":
     # If you want to read and write from files use these two lines:
     fin = open(join(current_dir, "./input.txt"), "r")
     fout = open(join(current_dir, "./output.txt"), "w")
-    print("Read")
     solve(fin, fout)
