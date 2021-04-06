@@ -66,6 +66,6 @@ if __name__ == "__main__":
     # fin = sys.stdin
     # fout = sys.stdout
     # If you want to read and write from files use these two lines:
-    fin = open(join(current_dir, "./input-kits-aed1.txt"), "r")
+    fin = open(join(current_dir, "./input/input-kits-9ccf.txt"), "r")
     fout = open(join(current_dir, "./output.txt"), "w")
     solve(fin, fout)

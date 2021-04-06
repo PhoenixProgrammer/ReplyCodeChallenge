@@ -13,11 +13,12 @@ def parse_testcases(io):
     # For each test case
     for _ in range(T):
         # Read number of gadgets
-        N = int(io.readline())
+        (N, k) = map(int, io.readline(  ).strip().split())
         # Read the input data
-        input = list(map(int, io.readline(  ).strip().split()))
+        inputAntennas = list(map(int, io.readline(  ).strip().split()))
+        inputBuildings = list(map(int, io.readline(  ).strip().split()))
         # Add to the list fo test cases
-        tc.append(list(input))
+        tc.append([k, inputAntennas, inputBuildings])
 
     # Return all the test cases parsed
     print(tc)
@@ -25,32 +26,33 @@ def parse_testcases(io):
 
 # Function to solve a single test case
 def solve_testcase(t):
-    solution = 0
+    k = t[0]
 
-    nums_to_check = []
-    num = min(t)
+    A = t[1]
+    B = t[2]
+    temp_min = 0
+    for _ in range(k):
+        if (min(A) >= 0 and min(B) >= 0):
+            temp_min += min(A) * min(B)
+            A.remove(min(A))
+            B.remove(min(B))
+        else:
+            pass
 
-    for i in range(1, math.floor(num / 2) + 1):
-        if num % i == 0:
-            nums_to_check.append(i)
-    nums_to_check.append(num)
+    A = t[1]
+    B = t[2]
+    temp_max = 0
+    for _ in range(k):
+        if (min(A) * min(B)) > (max(A) * max(A)):
+            temp_max += min(A) * min(B)
+            A.remove(min(A))
+            B.remove(min(B))
+        else:
+            temp_max += max(A) * max(B)
+            A.remove(max(A))
+            B.remove(max(B))
 
-    solutions = []
-        
-    for divisor in nums_to_check:
-        c = True
-        for num in t:
-            if num % divisor == 0:
-                continue
-            else:
-                c = False
-        if c == True:
-            solutions.append(divisor)
-        
-    solution = len(solutions)
-
-    print(solution)
-    return solution
+    return str(f"{temp_min} {temp_max}")
 
 # Solve 
 def solve(input, output):
@@ -66,6 +68,6 @@ if __name__ == "__main__":
     # fin = sys.stdin
     # fout = sys.stdout
     # If you want to read and write from files use these two lines:
-    fin = open(join(current_dir, "./input-kits-9ccf.txt"), "r")
+    fin = open(join(current_dir, "./input-antennas-26b7.txt"), "r")
     fout = open(join(current_dir, "./output.txt"), "w")
     solve(fin, fout)
